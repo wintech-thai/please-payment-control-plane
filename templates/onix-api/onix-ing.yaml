@@ -19,6 +19,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: pp-{{ .Values.envGroup }}-onix-api
+                name: please-payment-{{ .Values.envGroup }}-onix-api
                 port:
                   number: 80
