@@ -1,7 +1,7 @@
 
-admin:
+merchant:
   enabled: true
-  nameOverride: admin
+  nameOverride: merchant
 
   ingress:
     enabled: false
@@ -28,7 +28,7 @@ admin:
     #  periodSeconds: 10
 
     image:
-      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-admin
+      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-merchant
 
     #volumeMounts:
     #  - name: secrets

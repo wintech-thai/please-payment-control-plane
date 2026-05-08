@@ -1,0 +1,5 @@
+
+noti-hub:
+  pods:
+    image:
+      tag: "<<image-tag>>"
