@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-205517e"
+      tag: "develop-ce265be"
