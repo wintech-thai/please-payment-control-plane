@@ -1,0 +1,65 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: simple-email-send
+spec:
+  # kubectl create job --from=cronjob/simple-email-send simple-email-send-001 -n onix-v2-production
+  suspend: true
+  schedule: "1 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 3600
+      template:
+        spec:
+          containers:
+          - name: cron-script
+            image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+            imagePullPolicy: IfNotPresent
+            command:
+            - ruby
+            args:
+            - /scripts/simple-email-send.rb
+            env:
+            - name: PG_HOST
+              value: postgresql-onix
+
+            - name: PG_PORT
+              value: "5432"
+
+            - name: PG_USER
+              value: "postgres"
+
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: onix-postgres-secret
+                  key: adminPasswordKey
+                  optional: false
+
+            - name: PG_DB
+              value: "onix"
+
+            - name: MAILGUN_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mailgun-secret
+                  key: MAILGUN_API_KEY
+                  optional: false
+
+            volumeMounts:
+            - name: temp-dir
+              mountPath: /data/temp
+
+            #- name: secrets
+            #  readOnly: true
+            #  mountPath: "/secrets"
+
+          restartPolicy: OnFailure
+
+          volumes:
+          - name: temp-dir
+            emptyDir: {}
+
+          #- name: secrets
+          #  secret:
+          #    secretName: gcp-sa-secret

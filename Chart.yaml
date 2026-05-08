@@ -1,0 +1,51 @@
+apiVersion: v2
+name: helm-onix
+description: A Helm chart for Please Payment
+
+type: application
+version: 1.0.0
+appVersion: "1.0"
+
+dependencies:
+
+  ### pgSQL ###
+  - name: "postgresql"
+    alias: postgresql-onix
+    condition: postgresql-onix.enabled
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "16.7.15"
+
+  ### Redis ###
+  - name: "redis"
+    alias: redis
+    condition: redis.enabled
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "18.13.0"
+
+  ### Onix API ###
+  - name: "generic-app"
+    alias: onix-api
+    condition: onix-api.enabled
+    repository: "https://charts.visonneau.fr/"
+    version: "0.0.14"
+
+  ### Please Payment Merchant ###
+  #- name: "generic-app"
+  #  alias: please-payment-merchant
+  #  condition: please-payment-merchant.enabled
+  #  repository: "https://charts.visonneau.fr/"
+  #  version: "0.0.14"
+
+  ### Please Payment Admin ###
+  #- name: "generic-app"
+  #  alias: please-payment-admin
+  #  condition: please-payment-admin.enabled
+  #  repository: "https://charts.visonneau.fr/"
+  #  version: "0.0.14"
+
+  ### Please Payment Notify ###
+  #- name: "generic-app"
+  #  alias: please-payment-notify
+  #  condition: please-payment-notify.enabled
+  #  repository: "https://charts.visonneau.fr/"
+  #  version: "0.0.14"

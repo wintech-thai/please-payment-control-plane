@@ -1,0 +1,28 @@
+postgresql-onix:
+  enabled: true
+  fullnameOverride: postgresql-onix
+  auth:
+    database: onix
+    existingSecret: onix-postgres-secret
+    secretKeys:
+      adminPasswordKey: adminPasswordKey
+
+  image:
+    repository: bitnamilegacy/postgresql
+
+  global:
+    security:
+      allowInsecureImages: true
+
+  primary:
+    persistence:
+      enabled: true
+      size: 100Gi
+
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "300m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
