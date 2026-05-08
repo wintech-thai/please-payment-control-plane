@@ -36,12 +36,12 @@ dependencies:
   #  repository: "https://charts.visonneau.fr/"
   #  version: "0.0.14"
 
-  ### Please Payment Admin ###
-  #- name: "generic-app"
-  #  alias: please-payment-admin
-  #  condition: please-payment-admin.enabled
-  #  repository: "https://charts.visonneau.fr/"
-  #  version: "0.0.14"
+  ## Please Payment Admin ###
+  - name: "generic-app"
+    alias: admin
+    condition: admin.enabled
+    repository: "https://charts.visonneau.fr/"
+    version: "0.0.14"
 
   ### Please Payment Notify ###
   #- name: "generic-app"

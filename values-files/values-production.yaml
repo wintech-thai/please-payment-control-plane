@@ -5,6 +5,6 @@ envAliasJob: Production
 envGroup: prod
 
 domainOnixPpAPI: api-prod.please-payment.local
-pleaseProtectCenterDomain: center-prod.please-payment.local
+pleasePaymentAdminDomain: admin-prod.please-payment.local
 
 pgDiskSize: 100Gi
