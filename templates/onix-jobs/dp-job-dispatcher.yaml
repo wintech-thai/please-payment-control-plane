@@ -15,7 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: job-dispatcher
     spec:
-      serviceAccountName: onix-sa
+      serviceAccountName: please-payment-sa
       containers:
       # GCS file download
       - env:
