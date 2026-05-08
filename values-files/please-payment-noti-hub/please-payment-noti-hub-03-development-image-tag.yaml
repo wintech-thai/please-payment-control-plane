@@ -2,4 +2,4 @@
 noti-hub:
   pods:
     image:
-      tag: "develop-be608e0"
+      tag: "main-78898bc"
