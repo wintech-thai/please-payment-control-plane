@@ -28,7 +28,7 @@ admin:
     #  periodSeconds: 10
 
     image:
-      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-protect/please-protect-center
+      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-admin
 
     #volumeMounts:
     #  - name: secrets
