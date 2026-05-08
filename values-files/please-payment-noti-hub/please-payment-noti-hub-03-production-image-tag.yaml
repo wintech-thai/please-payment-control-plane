@@ -1,0 +1,5 @@
+
+noti-hub:
+  pods:
+    image:
+      tag: "v0.0.1"

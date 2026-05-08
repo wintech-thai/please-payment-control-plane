@@ -1,0 +1,50 @@
+merchant:
+  pods:
+    replicas: 1
+
+    resources:
+      limits:
+        cpu: 300m
+        memory: 350Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+
+    env:
+      - name: ENV_GROUP
+        value: 'prod'
+
+      - name: ENV_RUN
+        value: 'Production'
+
+      - name: NODE_ENV
+        value: 'Production'
+
+      - name: NEXT_PUBLIC_API_URL
+        value: 'https://api.please-payment.com'
+
+      - name: BACKEND_URL
+        value: 'http://please-payment-prod-onix-api'
+
+      - name: NEXT_PUBLIC_PROVIDER_URL
+        value: 'https://dev-hubs.com'
+
+      - name: ES_USER
+        valueFrom:
+          secretKeyRef:
+            name: es-user1
+            key: ES_USER
+            optional: false
+
+      - name: ES_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: es-user1
+            key: ES_PASSWORD
+            optional: false
+
+      - name: ES_URL
+        value: 'https://es-pp-es-http.elasticsearch.svc.cluster.local:9200'
+
+      - name: ES_INDEX_PATTERN
+        value: 'onix-v2-*'
