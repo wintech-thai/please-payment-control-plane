@@ -1,0 +1,9 @@
+---
+envAlias: development
+envAliasJob: Development
+envGroup: dev
+
+domainOnixPpAPI: api-dev.please-payment.local
+pleaseProtectCenterDomain: center-dev.please-payment.local
+
+pgDiskSize: 30Gi

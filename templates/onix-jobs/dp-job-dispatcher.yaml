@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-dispatcher
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: job-dispatcher
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: job-dispatcher
+    spec:
+      serviceAccountName: onix-sa
+      containers:
+      # GCS file download
+      - env:
+        - name: ENVIRONMENT 
+          value: {{ .Values.envAliasJob }}
+
+        - name: TZ
+          value: "Asia/Bangkok"
+
+        - name: REDIS_HOST
+          value: "redis-master"
+
+        - name: REDIS_PORT
+          value: "6379"
+
+        - name: PG_HOST
+          value: postgresql-onix
+
+        - name: PG_PORT
+          value: "5432"
+
+        - name: PG_USER
+          value: "postgres"
+
+        - name: PG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: onix-postgres-secret
+              key: adminPasswordKey
+              optional: false
+
+        - name: PG_DB
+          value: "onix"
+
+        - name: TEMP_DIR
+          value: '/data/temp'
+
+        - name: API_ENDPOINT
+          value: "http://onix-v2-{{ .Values.envGroup }}-onix-api"
+
+        command:
+          - ruby
+        args:
+          - /scripts/job-dispatcher.rb
+        image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+        imagePullPolicy: IfNotPresent
+        name: job-dispatcher
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+
+        volumeMounts:
+        - name: temp-dir
+          mountPath: /data/temp
+
+      volumes:
+      - emptyDir: {}
+        name: temp-dir

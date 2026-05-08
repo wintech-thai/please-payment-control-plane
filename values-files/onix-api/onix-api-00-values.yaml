@@ -1,0 +1,49 @@
+
+onix-api:
+  enabled: true
+  nameOverride: onix-api
+
+  ingress:
+    enabled: false
+
+  podDisruptionBudget:
+    enabled: false
+
+  pods:
+    controller: deployment
+    readinessProbe:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 2
+
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 20
+      periodSeconds: 10
+
+    image:
+      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-api
+
+    volumeMounts:
+      - name: secrets
+        mountPath: "/secrets"
+        readOnly: true
+
+    volumes:
+      - name: secrets
+        secret:
+          secretName: gcp-sa-secret
+
+  service:
+    enabled: true
+    ports:
+      - port: 80
+        targetPort: 8080
+        protocol: TCP
+        name: http

@@ -1,0 +1,13 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: please-payment-crb-{{ .Values.envAlias }}
+subjects:
+- kind: ServiceAccount
+  name: please-payment-sa
+  namespace: please-payment-{{ .Values.envAlias }}
+roleRef:
+  kind: ClusterRole
+  name: please-payment-cr-{{ .Values.envAlias }}
+  apiGroup: rbac.authorization.k8s.io
