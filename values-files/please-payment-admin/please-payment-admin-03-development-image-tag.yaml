@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-6dd7d45"
+      tag: "main-99adf22"
