@@ -47,4 +47,4 @@ admin:
         value: 'https://es-pp-es-http.elasticsearch.svc.cluster.local:9200'
 
       - name: ES_INDEX_PATTERN
-        value: 'onix-v2-*'
+        value: 'onix-v2-audit-*'
