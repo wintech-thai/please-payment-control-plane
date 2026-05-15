@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "develop-b445977"
+      tag: "develop-acacfdb"
