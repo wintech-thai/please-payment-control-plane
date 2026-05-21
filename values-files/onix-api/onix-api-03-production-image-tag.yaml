@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "v0.1.85"
+      tag: "v0.1.86"
