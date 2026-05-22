@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "develop-ea2290b"
+      tag: "main-220fc68"
