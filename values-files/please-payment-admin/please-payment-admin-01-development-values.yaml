@@ -48,23 +48,3 @@ admin:
 
       - name: ES_INDEX_PATTERN
         value: 'onix-v2-audit-*'
-
-      - name: MINIO_ENDPOINT
-        value: 'http://minio-main.minio.svc.cluster.local:9000'
-
-      - name: MINIO_ACCESS_KEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-secret
-            key: MINIO_ACCESS_KEY
-            optional: false
-
-      - name: MINIO_SECRET_KEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-secret
-            key: MINIO_SECRET_KEY
-            optional: false
-
-      - name: MINIO_BUCKET
-        value: 'uploads-dev'
