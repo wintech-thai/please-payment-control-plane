@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: job-dispatcher
+  name: job-dispatcher-payment
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: job-dispatcher
+      app.kubernetes.io/name: job-dispatcher-payment
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: job-dispatcher
+        app.kubernetes.io/name: job-dispatcher-payment
     spec:
       serviceAccountName: please-payment-sa
       containers:
