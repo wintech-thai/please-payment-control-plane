@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "main-dbbc552"
+      tag: "develop-24e454a"
