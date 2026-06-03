@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "main-d1d5300"
+      tag: "develop-0346020"
