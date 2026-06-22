@@ -1,4 +1,4 @@
-noti-hub:
+web:
   pods:
     replicas: 1
 
@@ -12,22 +12,22 @@ noti-hub:
 
     env:
       - name: ENV_GROUP
-        value: 'dev'
+        value: 'prod'
 
       - name: ENV_RUN
-        value: 'Development'
+        value: 'Production'
 
       - name: NODE_ENV
-        value: 'Development'
+        value: 'Production'
 
       - name: NEXT_PUBLIC_API_URL
-        value: 'https://api-dev.please-payment.com'
+        value: 'https://api.please-payment.com'
 
       - name: BACKEND_URL
-        value: 'http://please-payment-dev-onix-api'
+        value: 'http://please-payment-prod-onix-api'
 
       - name: NEXT_PUBLIC_PROVIDER_URL
-        value: 'https://web-dev.dev-hubs.com'
+        value: 'https://dev-hubs.com'
 
       - name: ES_USER
         valueFrom:

@@ -43,9 +43,9 @@ dependencies:
     repository: "https://charts.visonneau.fr/"
     version: "0.0.14"
 
-  ## Please Payment Notify ###
+  ## Please Payment Web ###
   - name: "generic-app"
-    alias: noti-hub
-    condition: noti-hub.enabled
+    alias: web
+    condition: web.enabled
     repository: "https://charts.visonneau.fr/"
     version: "0.0.14"

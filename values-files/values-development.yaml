@@ -6,6 +6,6 @@ envGroup: dev
 domainOnixPpAPI: api-dev.please-payment.local
 pleasePaymentAdminDomain: admin-dev.please-payment.local
 pleasePaymentMerchantDomain: merchant-dev.please-payment.local
-pleasePaymentNotiHubDomain: notihub-dev.please-payment.local
+pleasePaymentWebDomain: web-dev.please-payment.local
 
 pgDiskSize: 30Gi
