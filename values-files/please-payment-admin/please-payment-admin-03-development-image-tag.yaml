@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-b94a700"
+      tag: "develop-c4db8e2"
