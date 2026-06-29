@@ -2,4 +2,4 @@
 web:
   pods:
     image:
-      tag: "develop-d48efde"
+      tag: "develop-dba0ab7"
