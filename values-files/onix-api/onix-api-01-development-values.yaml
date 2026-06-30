@@ -124,3 +124,5 @@ onix-api:
       - name: MINIO_BUCKET
         value: 'uploads-dev'
 
+      - name: IS_NATIVE_IDP
+        value: "true"
