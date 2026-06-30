@@ -2,4 +2,4 @@
 web:
   pods:
     image:
-      tag: "develop-eb6277a"
+      tag: "main-40cab33"
