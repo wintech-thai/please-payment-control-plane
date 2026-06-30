@@ -2,4 +2,4 @@
 web:
   pods:
     image:
-      tag: "develop-54096d2"
+      tag: "main-753bed5"
