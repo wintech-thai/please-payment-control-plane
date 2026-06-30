@@ -2,4 +2,4 @@
 web:
   pods:
     image:
-      tag: "main-753bed5"
+      tag: "develop-eb6277a"
