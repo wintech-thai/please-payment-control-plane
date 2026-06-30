@@ -125,4 +125,4 @@ onix-api:
         value: 'uploads-dev'
 
       - name: IS_NATIVE_IDP
-        value: "false"
+        value: "true"
