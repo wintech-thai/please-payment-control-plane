@@ -56,6 +56,12 @@ spec:
         - name: TEMP_DIR
           value: '/data/temp'
 
+        - name: SEND_TO_PG
+          value: 'true'
+
+        - name: SEND_TO_HTTP
+          value: 'true'
+
         - name: API_ENDPOINT
           value: "http://pp-{{ .Values.envGroup }}-onix-api"
 
