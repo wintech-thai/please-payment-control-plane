@@ -60,7 +60,7 @@ spec:
           value: 'true'
 
         - name: SEND_TO_HTTP
-          value: 'true'
+          value: 'false'
 
         - name: API_ENDPOINT
           value: "http://pp-{{ .Values.envGroup }}-onix-api"
