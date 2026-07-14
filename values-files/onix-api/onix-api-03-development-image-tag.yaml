@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "develop-f370e08"
+      tag: "develop-aff207a"
