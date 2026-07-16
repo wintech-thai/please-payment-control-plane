@@ -29,22 +29,22 @@ admin:
       - name: NEXT_PUBLIC_PROVIDER_URL
         value: 'https://web-dev.dev-hubs.com'
 
-      - name: ES_USER
-        valueFrom:
-          secretKeyRef:
-            name: es-user1
-            key: ES_USER
-            optional: false
+      #- name: ES_USER
+      #  valueFrom:
+      #    secretKeyRef:
+      #      name: es-user1
+      #      key: ES_USER
+      #      optional: false
 
-      - name: ES_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: es-user1
-            key: ES_PASSWORD
-            optional: false
+      #- name: ES_PASSWORD
+      #  valueFrom:
+      #    secretKeyRef:
+      #      name: es-user1
+      #      key: ES_PASSWORD
+      #      optional: false
 
-      - name: ES_URL
-        value: 'https://es-pp-es-http.elasticsearch.svc.cluster.local:9200'
+      #- name: ES_URL
+      #  value: 'https://es-pp-es-http.elasticsearch.svc.cluster.local:9200'
 
-      - name: ES_INDEX_PATTERN
-        value: 'onix-v2-audit-*'
+      #- name: ES_INDEX_PATTERN
+      #  value: 'onix-v2-audit-*'
