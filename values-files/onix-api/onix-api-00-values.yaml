@@ -30,15 +30,15 @@ onix-api:
     image:
       name: asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-api
 
-    volumeMounts:
-      - name: secrets
-        mountPath: "/secrets"
-        readOnly: true
+    #volumeMounts:
+    #  - name: secrets
+    #    mountPath: "/secrets"
+    #    readOnly: true
 
-    volumes:
-      - name: secrets
-        secret:
-          secretName: gcp-sa-secret
+    #volumes:
+    #  - name: secrets
+    #    secret:
+    #      secretName: gcp-sa-secret
 
   service:
     enabled: true

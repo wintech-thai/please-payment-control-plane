@@ -11,8 +11,8 @@ onix-api:
         memory: 100Mi
 
     env:
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: '/secrets/sa.json'
+      #- name: GOOGLE_APPLICATION_CREDENTIALS
+      #  value: '/secrets/sa.json'
 
       #- name: STORAGE_BUCKET
       #  value: 'onix-v2-artifacts'
@@ -27,8 +27,8 @@ onix-api:
       - name: ASPNETCORE_ENVIRONMENT
         value: "Production"
 
-      - name: LOG_ENDPOINT
-        value: "http://logstash-http.logstash-etl.svc.cluster.local:8080"
+      #- name: LOG_ENDPOINT
+      #  value: "http://logstash-http.logstash-etl.svc.cluster.local:8080"
 
       - name: IsDev
         value: "false"
