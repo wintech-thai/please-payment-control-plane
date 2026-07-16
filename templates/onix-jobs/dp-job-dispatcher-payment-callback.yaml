@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: log-dispatcher
+  name: job-dispatcher-payment-callback
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: log-dispatcher
+      app.kubernetes.io/name: job-dispatcher-payment-callback
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: log-dispatcher
+        app.kubernetes.io/name: job-dispatcher-payment-callback
     spec:
       serviceAccountName: please-payment-sa
       containers:
@@ -21,9 +21,6 @@ spec:
       - env:
         - name: ENVIRONMENT 
           value: {{ .Values.envAliasJob }}
-
-        - name: LOG_ENDPOINT
-          value: "http://logstash-http.logstash-etl.svc.cluster.local:8080"
 
         - name: TZ
           value: "Asia/Bangkok"
@@ -56,22 +53,16 @@ spec:
         - name: TEMP_DIR
           value: '/data/temp'
 
-        - name: SEND_TO_PG
-          value: 'true'
-
-        - name: SEND_TO_HTTP
-          value: 'false'
-
         - name: API_ENDPOINT
-          value: "http://pp-{{ .Values.envGroup }}-onix-api"
+          value: "http://onix-v2-{{ .Values.envGroup }}-onix-api"
 
         command:
           - ruby
         args:
-          - /scripts/log-dispatcher.rb
+          - /scripts/job-dispatcher-payment.rb
         image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
         imagePullPolicy: IfNotPresent
-        name: log-dispatcher
+        name: job-dispatcher-payment
         resources:
           limits:
             cpu: 200m
