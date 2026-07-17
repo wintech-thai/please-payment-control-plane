@@ -79,6 +79,14 @@ onix-api:
       - name: MINIO_ENDPOINT
         value: 'https://storage-api.please-payment.com'
 
+      # เผื่อเอาไว้ให้คนที่เอา control plane ไปใช้สามารถ custom ได้เอง
+      - name: MINIO_ENDPOINT_CUSTOM
+        valueFrom:
+          configMapKeyRef:
+            name: storage-config
+            key: MINIO_ENDPOINT_CUSTOM
+            optional: true
+
       - name: MINIO_ACCESS_KEY
         valueFrom:
           secretKeyRef:
