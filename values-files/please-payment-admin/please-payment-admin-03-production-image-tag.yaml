@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "v0.1.22"
+      tag: "v.1.0.21"
