@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: job-dispatcher
+  name: job-dispatcher-line-agent
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: job-dispatcher
+      app.kubernetes.io/name: job-dispatcher-line-agent
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: job-dispatcher
+        app.kubernetes.io/name: job-dispatcher-line-agent
     spec:
       serviceAccountName: please-payment-sa
       containers:
       # GCS file download
       - env:
-        - name: ENVIRONMENT 
+        - name: ENVIRONMENT
           value: {{ .Values.envAliasJob }}
 
         - name: TZ
@@ -53,16 +53,13 @@ spec:
         - name: TEMP_DIR
           value: '/data/temp'
 
-        - name: API_ENDPOINT
-          value: "http://onix-v2-{{ .Values.envGroup }}-onix-api"
-
         command:
           - ruby
         args:
-          - /scripts/job-dispatcher.rb
+          - /scripts/job-dispatcher-line-agent.rb
         image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
         imagePullPolicy: IfNotPresent
-        name: job-dispatcher
+        name: job-dispatcher-line-agent
         resources:
           limits:
             cpu: 200m
