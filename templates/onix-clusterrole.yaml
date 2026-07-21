@@ -4,10 +4,69 @@ kind: ClusterRole
 metadata:
   name: please-payment-cr-{{ .Values.envAlias }}
 rules:
-- apiGroups: [""]
-  resources: ["pods", "pods/exec"]
-  verbs: ["get", "create", "list"]
-  
-- apiGroups: ["batch"]
-  resources: ["cronjobs", "jobs"]
-  verbs: ["get", "create", "list", "patch"]
+  # Pods
+  - apiGroups: [""]
+    resources:
+      - pods
+      - pods/exec
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+
+  # Services
+  - apiGroups: [""]
+    resources:
+      - services
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+
+  # Deployments
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+
+  # Deployment Scale (เผื่ออนาคต)
+  - apiGroups: ["apps"]
+    resources:
+      - deployments/scale
+    verbs:
+      - get
+      - update
+      - patch
+
+  # Rollout Restart
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+    verbs:
+      - patch
+
+  # Jobs / CronJobs
+  - apiGroups: ["batch"]
+    resources:
+      - jobs
+      - cronjobs
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
