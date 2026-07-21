@@ -58,6 +58,10 @@ spec:
         - name: TEMP_DIR
           value: '/data/temp'
 
+        - name: API_HOST
+          value: 'http://please-payment-{{ .Values.envGroup }}-onix-api'
+
+
         command:
           - ruby
         args:
