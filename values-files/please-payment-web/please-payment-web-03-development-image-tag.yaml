@@ -2,4 +2,4 @@
 web:
   pods:
     image:
-      tag: "main-78898bc"
+      tag: "main-40cab33"

@@ -11,8 +11,8 @@ onix-api:
         memory: 100Mi
 
     env:
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: '/secrets/sa.json'
+      #- name: GOOGLE_APPLICATION_CREDENTIALS
+      #  value: '/secrets/sa.json'
 
       #- name: STORAGE_BUCKET
       #  value: 'onix-v2-artifacts'
@@ -27,8 +27,8 @@ onix-api:
       - name: ASPNETCORE_ENVIRONMENT
         value: "Production"
 
-      - name: LOG_ENDPOINT
-        value: "http://logstash-http.logstash-etl.svc.cluster.local:8080"
+      #- name: LOG_ENDPOINT
+      #  value: "http://logstash-http.logstash-etl.svc.cluster.local:8080"
 
       - name: IsDev
         value: "false"
@@ -72,40 +72,16 @@ onix-api:
       - name: Redis__Port
         value: "6379"
 
-      - name: IDP_CLIENT_ID
-        valueFrom:
-          secretKeyRef:
-            name: idp-secret
-            key: IDP_CLIENT_ID
-            optional: false
-
-      - name: IDP_CLIENT_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: idp-secret
-            key: IDP_CLIENT_SECRET
-            optional: false
-
-      - name: IDP_URL_PREFIX
-        valueFrom:
-          secretKeyRef:
-            name: idp-secret
-            key: IDP_URL_PREFIX
-            optional: false
-
-      - name: IDP_REALM
-        valueFrom:
-          secretKeyRef:
-            name: idp-secret
-            key: IDP_REALM
-            optional: false
-
-      - name: IDP_WITH_AUTH_PATH
-        value: "false"
-
-
       - name: MINIO_ENDPOINT
         value: 'https://storage-api.please-payment.com'
+
+      # เผื่อเอาไว้ให้คนที่เอา control plane ไปใช้สามารถ custom ได้เอง
+      - name: MINIO_ENDPOINT_CUSTOM
+        valueFrom:
+          configMapKeyRef:
+            name: storage-config
+            key: MINIO_ENDPOINT_CUSTOM
+            optional: true
 
       - name: MINIO_ACCESS_KEY
         valueFrom:
@@ -123,3 +99,6 @@ onix-api:
 
       - name: MINIO_BUCKET
         value: 'uploads-prod'
+
+      - name: IS_NATIVE_IDP
+        value: "true"

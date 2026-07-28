@@ -30,16 +30,6 @@ web:
     image:
       name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-web
 
-    #volumeMounts:
-    #  - name: secrets
-    #    mountPath: "/secrets"
-    #    readOnly: true
-
-    #volumes:
-    #  - name: secrets
-    #    secret:
-    #      secretName: gcp-sa-secret
-
   service:
     enabled: true
     ports:
