@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "main-bda3222"
+      tag: "develop-83e2a98"
