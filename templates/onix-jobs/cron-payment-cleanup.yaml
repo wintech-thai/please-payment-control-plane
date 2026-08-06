@@ -55,6 +55,14 @@ spec:
             - name: temp-dir
               mountPath: /data/temp
 
+            resources:
+              limits:
+                cpu: 50m
+                memory: 256Mi
+              requests:
+                cpu: 25m
+                memory: 64Mi
+
           restartPolicy: OnFailure
 
           volumes:
