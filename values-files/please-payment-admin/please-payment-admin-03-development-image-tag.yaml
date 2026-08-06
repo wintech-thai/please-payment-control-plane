@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "main-a1389bf"
+      tag: "main-116fecc"
