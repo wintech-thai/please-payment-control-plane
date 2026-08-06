@@ -51,6 +51,9 @@ spec:
             - name: REDIS_PORT
               value: "6379"
 
+            - name: API_BASE_URL
+              value: "http://please-payment-{{ .Values.envGroup }}-onix-api"
+
             volumeMounts:
             - name: temp-dir
               mountPath: /data/temp
