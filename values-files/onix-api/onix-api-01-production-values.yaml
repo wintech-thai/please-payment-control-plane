@@ -1,6 +1,6 @@
 onix-api:
   pods:
-    replicas: 2
+    replicas: 1
 
     resources:
       limits:

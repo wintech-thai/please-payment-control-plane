@@ -1,0 +1,73 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: payment-cleanup
+spec:
+  # kubectl create job --from=cronjob/payment-cleanup payment-cleanup-001 -n please-payment-development
+  suspend: false
+  schedule: "*/10 * * * *" #ทุก ๆ 10 นาที
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 3600
+      template:
+        spec:
+          containers:
+          - name: cron-script
+            image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+            imagePullPolicy: IfNotPresent
+            command:
+            - ruby
+            args:
+            - /scripts/payment-cleanup.rb
+            env:
+            - name: ENVIRONMENT 
+              value: {{ .Values.envAliasJob }}
+
+            - name: TZ
+              value: "Asia/Bangkok"
+
+            - name: PG_HOST
+              value: postgresql-onix
+
+            - name: PG_PORT
+              value: "5432"
+
+            - name: PG_USER
+              value: "postgres"
+
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: onix-postgres-secret
+                  key: adminPasswordKey
+                  optional: false
+
+            - name: PG_DB
+              value: "onix"
+
+            - name: REDIS_HOST
+              value: "redis-master"
+
+            - name: REDIS_PORT
+              value: "6379"
+
+            - name: API_BASE_URL
+              value: "http://please-payment-{{ .Values.envGroup }}-onix-api"
+
+            volumeMounts:
+            - name: temp-dir
+              mountPath: /data/temp
+
+            resources:
+              limits:
+                cpu: 50m
+                memory: 256Mi
+              requests:
+                cpu: 25m
+                memory: 64Mi
+
+          restartPolicy: OnFailure
+
+          volumes:
+          - name: temp-dir
+            emptyDir: {}
