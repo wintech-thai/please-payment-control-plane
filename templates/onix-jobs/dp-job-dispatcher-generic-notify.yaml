@@ -56,6 +56,13 @@ spec:
         - name: PG_DB
           value: "onix"
 
+        livenessProbe:
+          exec:
+            command: ["pgrep", "-f", "job-dispatcher-generic-notify.rb"]
+          initialDelaySeconds: 15
+          periodSeconds: 30
+          failureThreshold: 3
+
         resources:
           limits:
             cpu: 100m
