@@ -58,8 +58,11 @@ spec:
 
         livenessProbe:
           exec:
-            command: ["pgrep", "-f", "job-dispatcher-generic-notify.rb"]
-          initialDelaySeconds: 15
+            command:
+              - /bin/sh
+              - -c
+              - "test $(( $(date +%s) - $(cat /tmp/dispatcher-heartbeat) )) -lt 120"
+          initialDelaySeconds: 30
           periodSeconds: 30
           failureThreshold: 3
 
