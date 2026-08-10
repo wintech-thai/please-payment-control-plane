@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "main-4543c01"
+      tag: "develop-fcb0006"
