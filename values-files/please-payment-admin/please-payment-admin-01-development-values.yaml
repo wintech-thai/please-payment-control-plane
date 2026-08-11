@@ -28,3 +28,11 @@ admin:
 
       - name: NEXT_PUBLIC_PROVIDER_URL
         value: 'https://web-dev.dev-hubs.com'
+
+      # เผื่อเอาไว้ให้คนที่เอา control plane ไปใช้สามารถ custom ได้เอง
+      - name: CUSTOM_CHATBOT_DISABLE
+        valueFrom:
+          configMapKeyRef:
+            name: custom-config
+            key: CUSTOM_CHATBOT_DISABLE
+            optional: true
