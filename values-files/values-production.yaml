@@ -1,7 +1,6 @@
 ---
 envAlias: production
 envAliasJob: Production
-
 envGroup: prod
 
 domainOnixPpAPI: api-prod.please-payment.local
@@ -10,3 +9,5 @@ pleasePaymentMerchantDomain: merchant-prod.please-payment.local
 pleasePaymentWebDomain: web-prod.please-payment.local
 
 pgDiskSize: 100Gi
+
+jobAiKnowledgeDispatcherEnable: false

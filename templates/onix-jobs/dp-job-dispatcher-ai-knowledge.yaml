@@ -1,0 +1,79 @@
+---
+# อันนี้ให้ config ได้เพราะว่ามันใช้ CPU เยอะ เลยไม่จำเป็นต้องใช้สำหรับ server ที่ไม่ได้ต้องการ AI chatbot
+{{- if .Values.jobAiKnowledgeDispatcherEnable }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-dispatcher-ai-knowledge
+spec:
+  replicas: 1 #ต้องเป็น 1 เท่านั้น เพราะมีการใช้งาน PVC 
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: job-dispatcher-ai-knowledge
+  strategy:
+    type: Recreate #มีการใช้งาน PVC เดี๋ยวมันจะ lock รอกันตอน create อันใหม่แล้ว terminate อันเก่า
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: job-dispatcher-ai-knowledge
+    spec:
+      serviceAccountName: please-payment-sa
+      containers:
+      - name: job-dispatcher-ai-knowledge
+        image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs-python:{{ .Values.onixJobs.imageTag }}"
+        imagePullPolicy: IfNotPresent
+        command:
+          - ruby
+        args:
+          - /scripts/job-dispatcher-ai-knowledge.py
+        env:
+        - name: ENVIRONMENT
+          value: {{ .Values.envAliasJob }}
+
+        - name: TZ
+          value: "Asia/Bangkok"
+
+        - name: REDIS_HOST
+          value: "redis-master"
+
+        - name: REDIS_PORT
+          value: "6379"
+
+        - name: PG_HOST
+          value: postgresql-onix
+
+        - name: PG_PORT
+          value: "5432"
+
+        - name: PG_USER
+          value: "postgres"
+
+        - name: PG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: onix-postgres-secret
+              key: adminPasswordKey
+              optional: false
+
+        - name: PG_DB
+          value: "onix"
+
+        livenessProbe:
+          exec:
+            command:
+              - /bin/sh
+              - -c
+              - "test $(( $(date +%s) - $(cat /tmp/dispatcher-heartbeat) )) -lt 120"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          failureThreshold: 3
+
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+{{- end }}
