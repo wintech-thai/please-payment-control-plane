@@ -27,6 +27,11 @@ spec:
           - python3
         args:
           - /scripts/job-dispatcher-ai-knowledge.py
+
+        volumeMounts:
+          - name: ai-knowledge-data
+            mountPath: /data
+
         env:
         - name: ENVIRONMENT
           value: {{ .Values.envAliasJob }}
@@ -59,16 +64,6 @@ spec:
         - name: PG_DB
           value: "onix"
 
-        livenessProbe:
-          exec:
-            command:
-              - /bin/sh
-              - -c
-              - "test $(( $(date +%s) - $(cat /tmp/dispatcher-heartbeat) )) -lt 120"
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          failureThreshold: 3
-
         resources:
           limits:
             cpu: 100m
@@ -76,4 +71,20 @@ spec:
           requests:
             cpu: 50m
             memory: 64Mi
+      volumes:
+        - name: ai-knowledge-data
+          persistentVolumeClaim:
+            claimName: job-dispatcher-ai-knowledge-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: job-dispatcher-ai-knowledge-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+
 {{- end }}
