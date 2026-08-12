@@ -8,9 +8,9 @@ postgresql-onix:
       adminPasswordKey: adminPasswordKey
 
   image:
-    registry: "asia-southeast1-docker.pkg.dev"
-    repository: its-artifact-commons/utils/postgresql #bitnamilegacy/postgresql
-    tag: "v17.5.0"
+    #registry: "asia-southeast1-docker.pkg.dev"
+    repository: bitnamilegacy/postgresql #its-artifact-commons/utils/postgresql
+    #tag: "v17.5.0"
 
   global:
     security:
