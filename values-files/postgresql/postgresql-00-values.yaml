@@ -10,7 +10,7 @@ postgresql-onix:
   image:
     registry: "asia-southeast1-docker.pkg.dev"
     repository: its-artifact-commons/utils/postgresql #bitnamilegacy/postgresql
-    tag: "17.5.0"
+    tag: "v17.5.0"
 
   global:
     security:
