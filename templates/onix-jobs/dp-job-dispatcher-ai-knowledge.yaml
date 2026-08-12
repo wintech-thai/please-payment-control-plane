@@ -24,7 +24,7 @@ spec:
         image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs-python:{{ .Values.onixJobs.imageTag }}"
         imagePullPolicy: IfNotPresent
         command:
-          - ruby
+          - python3
         args:
           - /scripts/job-dispatcher-ai-knowledge.py
         env:
