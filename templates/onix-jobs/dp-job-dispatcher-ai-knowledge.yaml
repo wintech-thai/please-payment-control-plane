@@ -1,6 +1,6 @@
 ---
 # อันนี้ให้ config ได้เพราะว่ามันใช้ CPU เยอะ เลยไม่จำเป็นต้องใช้สำหรับ server ที่ไม่ได้ต้องการ AI chatbot
-{{- if .Values.jobAiKnowledgeDispatcherEnable }}
+{{- if eq .Values.jobAiKnowledgeDispatcherEnable "true" }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
