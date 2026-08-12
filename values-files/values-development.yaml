@@ -9,3 +9,5 @@ pleasePaymentMerchantDomain: merchant-dev.please-payment.local
 pleasePaymentWebDomain: web-dev.please-payment.local
 
 pgDiskSize: 30Gi
+
+jobAiKnowledgeDispatcherEnable: "true"
