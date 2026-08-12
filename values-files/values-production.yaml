@@ -10,4 +10,4 @@ pleasePaymentWebDomain: web-prod.please-payment.local
 
 pgDiskSize: 100Gi
 
-jobAiKnowledgeDispatcherEnable: false
+jobAiKnowledgeDispatcherEnable: "true"
