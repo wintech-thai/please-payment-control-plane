@@ -1,5 +1,5 @@
 {{- define "onix-postgres.fullname" -}}
-{{- printf "%s-postgres" .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- printf "postgresql-onix-v2" }}
 {{- end }}
 
 {{- define "onix-postgres.labels" -}}
