@@ -1,6 +1,4 @@
 ---
-global:
-  postgresV2Enabled: true
 
 envAlias: development
 envAliasJob: Development

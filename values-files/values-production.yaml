@@ -1,6 +1,4 @@
 ---
-global:
-  postgresV2Enabled: false
 
 envAlias: production
 envAliasJob: Production
