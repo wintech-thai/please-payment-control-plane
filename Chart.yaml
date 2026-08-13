@@ -16,7 +16,7 @@ dependencies:
     version: "16.7.15"
 
   ### PostgreSQL V2 ###
-  - name: "postgres-v2"
+  - name: "postgresql-v2"
     alias: postgresql-v2
     condition: postgresql-v2.enabled
     version: "1.0.0"
