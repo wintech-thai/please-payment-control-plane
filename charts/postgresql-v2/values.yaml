@@ -1,0 +1,32 @@
+enabled: true
+replicaCount: 1
+
+image:
+  repository: asia-southeast1-docker.pkg.dev/its-artifact-commons/utils/postgresql
+  tag: v17.5.0
+  pullPolicy: IfNotPresent
+
+postgres:
+  database: onix
+  username: postgres
+  existingSecret: onix-postgres-secret
+  passwordSecretKey: adminPasswordKey
+
+service:
+  type: ClusterIP
+  port: 5432
+
+persistence:
+  enabled: true
+  storageClass: ""
+  size: 100Gi
+  accessModes:
+    - ReadWriteOnce
+    
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "300m"
+  limits:
+    memory: "2Gi"
+    cpu: "1"

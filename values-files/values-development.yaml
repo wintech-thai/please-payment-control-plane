@@ -1,4 +1,5 @@
 ---
+
 envAlias: development
 envAliasJob: Development
 envGroup: dev
@@ -9,5 +10,7 @@ pleasePaymentMerchantDomain: merchant-dev.please-payment.local
 pleasePaymentWebDomain: web-dev.please-payment.local
 
 pgDiskSize: 30Gi
+pgHost: postgresql-onix
 
 jobAiKnowledgeDispatcherEnable: "yes"
+

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: postgresql-v2
+description: PostgreSQL V2 for Onix
+type: application
+version: 1.0.0
+appVersion: "17"
