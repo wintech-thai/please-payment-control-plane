@@ -19,6 +19,7 @@ dependencies:
   - name: "postgres-v2"
     alias: postgresql-v2
     condition: postgresql-v2.enabled
+    version: "1.0.0"
 
   ### Redis ###
   - name: "redis"
