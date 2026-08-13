@@ -27,7 +27,7 @@ spec:
               value: "Asia/Bangkok"
 
             - name: PG_HOST
-              value: postgresql-onix
+              value: {{ .Values.pgHost }}
 
             - name: PG_PORT
               value: "5432"

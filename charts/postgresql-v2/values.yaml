@@ -1,4 +1,4 @@
-enabled: true
+enabled: {{ .Values.global.postgresV2Enabled }}
 replicaCount: 1
 
 image:
