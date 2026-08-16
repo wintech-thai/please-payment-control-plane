@@ -9,6 +9,7 @@ appVersion: "1.0"
 dependencies:
 
   ### pgSQL ###
+  ### ไม่ใช้แล้วแต่ว่าให้คงไว้ก่อน
   - name: "postgresql"
     alias: postgresql-onix
     condition: postgresql-onix.enabled
