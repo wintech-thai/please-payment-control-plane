@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-d838186"
+      tag: "main-058c9a0"
