@@ -1,0 +1,60 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: db-sync
+spec:
+  # kubectl create job --from=cronjob/db-sync db-sync-001 -n please-payment-development
+  suspend: false
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 3600
+      template:
+        spec:
+          serviceAccountName: please-payment-sa
+          containers:
+          - name: cron-script
+            image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+            imagePullPolicy: IfNotPresent
+            command:
+            - ruby
+            args:
+            - /scripts/job-db-sync.rb
+            env:
+            - name: ENVIRONMENT
+              value: {{ .Values.envAliasJob }}
+
+            - name: TZ
+              value: "Asia/Bangkok"
+
+            - name: PG_NAMESPACE
+              value: {{ .Release.Namespace }}
+
+            - name: PG_OLD_POD
+              value: "postgresql-onix-0"
+
+            - name: PG_NEW_POD
+              value: "postgresql-onix-v2-0"
+
+            - name: PG_USER
+              value: "postgres"
+
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: onix-postgres-secret
+                  key: adminPasswordKey
+                  optional: false
+
+            - name: PG_DB
+              value: "onix"
+
+            resources:
+              limits:
+                cpu: 200m
+                memory: 512Mi
+              requests:
+                cpu: 50m
+                memory: 64Mi
+
+          restartPolicy: OnFailure
