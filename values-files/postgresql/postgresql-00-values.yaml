@@ -1,5 +1,5 @@
 postgresql-onix:
-  enabled: true
+  enabled: false #เปลี่ยนไปใช้ตัว v2 แทน แต่คงไฟล์นี้ไว้นะยังไม่เอาออก
   fullnameOverride: postgresql-onix
   auth:
     database: onix
