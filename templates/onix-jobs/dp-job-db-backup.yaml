@@ -60,7 +60,7 @@ spec:
           value: {{ .Release.Namespace }}
 
         - name: PG_POD_NAME
-          value: "postgresql-onix-0"
+          value: "postgresql-onix-v2-0"
 
         resources:
           limits:
