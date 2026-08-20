@@ -49,10 +49,3 @@ dependencies:
     condition: admin.enabled
     repository: "https://charts.visonneau.fr/"
     version: "0.0.14"
-
-  ## Please Payment Web ###
-  - name: "generic-app"
-    alias: web
-    condition: web.enabled
-    repository: "https://charts.visonneau.fr/"
-    version: "0.0.14"
