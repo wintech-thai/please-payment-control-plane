@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "main-ca9e125"
+      tag: "develop-c636a60"
