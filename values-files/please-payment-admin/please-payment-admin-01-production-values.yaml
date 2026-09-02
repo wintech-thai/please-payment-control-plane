@@ -36,3 +36,10 @@ admin:
             name: custom-config
             key: CUSTOM_CHATBOT_DISABLE
             optional: true
+
+      - name: MUTUAL_KEY
+        valueFrom:
+          secretKeyRef:
+            name: misc-secret
+            key: MUTUAL_KEY
+            optional: false
