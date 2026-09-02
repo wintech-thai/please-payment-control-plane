@@ -106,3 +106,10 @@ onix-api:
 
       - name: IS_NATIVE_IDP
         value: "true"
+
+      - name: MUTUAL_KEY
+        valueFrom:
+          secretKeyRef:
+            name: misc-secret
+            key: MUTUAL_KEY
+            optional: false

@@ -28,3 +28,10 @@ merchant:
 
       - name: NEXT_PUBLIC_PROVIDER_URL
         value: 'https://dev-hubs.com'
+
+      - name: MUTUAL_KEY
+        valueFrom:
+          secretKeyRef:
+            name: misc-secret
+            key: MUTUAL_KEY
+            optional: false
