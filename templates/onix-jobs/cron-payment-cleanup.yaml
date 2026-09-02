@@ -13,7 +13,7 @@ spec:
         spec:
           containers:
           - name: cron-script
-            image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+            image: "pjamenaja/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
             imagePullPolicy: IfNotPresent
             command:
             - ruby

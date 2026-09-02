@@ -28,7 +28,7 @@ onix-api:
       periodSeconds: 10
 
     image:
-      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-api
+      name: pjamenaja/onix-v2-api
 
     #volumeMounts:
     #  - name: secrets
