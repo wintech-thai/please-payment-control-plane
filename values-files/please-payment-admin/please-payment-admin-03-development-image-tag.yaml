@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-30f94ab"
+      tag: "main-ca3237a"
