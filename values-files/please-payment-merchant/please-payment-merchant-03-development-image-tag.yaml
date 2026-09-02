@@ -2,4 +2,4 @@
 merchant:
   pods:
     image:
-      tag: "main-d5d2962"
+      tag: "develop-38f2659"
