@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "develop-fcdc51b"
+      tag: "main-decbcc4"
