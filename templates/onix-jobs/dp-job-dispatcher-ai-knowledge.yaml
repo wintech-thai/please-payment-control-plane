@@ -21,7 +21,7 @@ spec:
       serviceAccountName: please-payment-sa
       containers:
       - name: job-dispatcher-ai-knowledge
-        image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs-python:{{ .Values.onixJobs.imageTag }}"
+        image: "pjamenaja/onix-v2-jobs-python:{{ .Values.onixJobs.imageTag }}"
         imagePullPolicy: IfNotPresent
         command:
           - python3

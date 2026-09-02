@@ -28,7 +28,7 @@ admin:
     #  periodSeconds: 10
 
     image:
-      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-admin
+      name: pjamenaja/please-payment-admin
 
   service:
     enabled: true

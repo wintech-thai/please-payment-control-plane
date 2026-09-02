@@ -69,7 +69,7 @@ spec:
           - ruby
         args:
           - /scripts/log-dispatcher.rb
-        image: "asia-southeast1-docker.pkg.dev/its-artifact-commons/onix-v2/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+        image: "pjamenaja/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
         imagePullPolicy: IfNotPresent
         name: log-dispatcher
         resources:

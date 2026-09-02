@@ -28,7 +28,7 @@ merchant:
     #  periodSeconds: 10
 
     image:
-      name: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-payment/please-payment-merchant
+      name: pjamenaja/please-payment-merchant
 
   service:
     enabled: true
