@@ -61,6 +61,12 @@ spec:
         - name: API_BASE_URL
           value: 'http://please-payment-{{ .Values.envGroup }}-onix-api'
 
+        - name: MUTUAL_KEY
+          valueFrom:
+            secretKeyRef:
+              name: misc-secret
+              key: MUTUAL_KEY
+              optional: false
 
         command:
           - ruby
