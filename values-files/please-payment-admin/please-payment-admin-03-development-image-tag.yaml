@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "main-7b08c54"
+      tag: "main-90759b9"
