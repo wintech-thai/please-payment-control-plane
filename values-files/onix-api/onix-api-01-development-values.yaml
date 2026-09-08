@@ -75,35 +75,6 @@ onix-api:
       - name: IDP_WITH_AUTH_PATH
         value: "false"
 
-
-      - name: MINIO_ENDPOINT
-        value: 'https://storage-api.please-payment.com'
-
-      # เผื่อเอาไว้ให้คนที่เอา control plane ไปใช้สามารถ custom ได้เอง
-      - name: MINIO_ENDPOINT_CUSTOM
-        valueFrom:
-          configMapKeyRef:
-            name: storage-config
-            key: MINIO_ENDPOINT_CUSTOM
-            optional: true
-
-      - name: MINIO_ACCESS_KEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-secret
-            key: MINIO_ACCESS_KEY
-            optional: false
-
-      - name: MINIO_SECRET_KEY
-        valueFrom:
-          secretKeyRef:
-            name: minio-secret
-            key: MINIO_SECRET_KEY
-            optional: false
-
-      - name: MINIO_BUCKET
-        value: 'uploads-dev'
-
       - name: IS_NATIVE_IDP
         value: "true"
 
