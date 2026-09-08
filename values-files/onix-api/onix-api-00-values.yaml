@@ -9,6 +9,10 @@ onix-api:
   podDisruptionBudget:
     enabled: false
 
+  serviceAccount:
+    create: false
+    name: please-payment-sa
+
   pods:
     controller: deployment
     readinessProbe:
