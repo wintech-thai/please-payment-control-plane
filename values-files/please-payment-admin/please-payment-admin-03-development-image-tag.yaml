@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-2df20fe"
+      tag: "main-af53452"
