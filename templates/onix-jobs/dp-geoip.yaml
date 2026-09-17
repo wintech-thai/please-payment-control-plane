@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-geoip-db-sync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: job-geoip-db-sync
+  template:
+    metadata:
+      labels:
+        app: job-geoip-db-sync
+    spec:
+      volumes:
+        - name: geoip-storage
+          persistentVolumeClaim:
+            claimName: 'job-geoip-db-sync-pvc'
+
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: geoip-storage
+              mountPath: /usr/share/nginx/html
+
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+
+        - name: maxmind-updater
+          args:
+            - /scripts/geoip-db-sync.rb
+          command:
+            - ruby
+
+          image: "pjamenaja/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+          env:
+            - name: REMOTE_BASE_URL
+              value: 'https://storage.googleapis.com/public-software-download/geoip'
+            
+            - name: DOWNLOAD_DIR
+              value: /data/mmdb
+
+            - name: REMOTE_VERSION_PATH
+              value: version.json
+
+          volumeMounts:
+            - name: geoip-storage
+              mountPath: /data/mmdb
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 256Mi
