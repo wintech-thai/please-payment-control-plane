@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-4682aca"
+      tag: "main-f2bcac0"
