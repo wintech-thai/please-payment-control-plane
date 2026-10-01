@@ -2,4 +2,4 @@
 admin:
   pods:
     image:
-      tag: "develop-bbcc602"
+      tag: "develop-9276ffa"
