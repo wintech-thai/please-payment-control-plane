@@ -2,4 +2,4 @@
 merchant:
   pods:
     image:
-      tag: "v0.0.58"
+      tag: "v0.0.59"
