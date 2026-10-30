@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-dispatcher-payment-email
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: job-dispatcher-payment-email
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: job-dispatcher-payment-email
+    spec:
+      serviceAccountName: please-payment-sa
+      containers:
+      - env:
+        - name: ENVIRONMENT
+          value: {{ .Values.envAliasJob }}
+
+        - name: TZ
+          value: "Asia/Bangkok"
+
+        - name: REDIS_HOST
+          value: "redis-master"
+
+        - name: REDIS_PORT
+          value: "6379"
+
+        - name: PG_HOST
+          value: {{ .Values.pgHost }}
+
+        - name: PG_PORT
+          value: "5432"
+
+        - name: PG_USER
+          value: "postgres"
+
+        - name: PG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: onix-postgres-secret
+              key: adminPasswordKey
+              optional: false
+
+        - name: PG_DB
+          value: "onix"
+
+        - name: SMTP_USER
+          valueFrom:
+            secretKeyRef:
+              name: smtp-secret
+              key: SMTP_USER
+              optional: false
+
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: smtp-secret
+              key: SMTP_PASSWORD
+              optional: false
+
+        command:
+          - ruby
+        args:
+          - /scripts/please-payment-email.send.rb
+        image: "pjamenaja/onix-v2-jobs:{{ .Values.onixJobs.imageTag }}"
+        imagePullPolicy: IfNotPresent
+        name: job-dispatcher-payment-email
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
