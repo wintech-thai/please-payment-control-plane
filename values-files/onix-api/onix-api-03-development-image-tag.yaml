@@ -2,4 +2,4 @@
 onix-api:
   pods:
     image:
-      tag: "develop-fd5c89f"
+      tag: "develop-6651eb1"
